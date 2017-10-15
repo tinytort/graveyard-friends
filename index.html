@@ -29,17 +29,22 @@
         </div>
     </template>
 
-    <section id="graveyard">
+    <grave-yard>
         <p>RIP BOBBY</p>
-        <p>HOLY SHIT</p>
-    </section>
+        <p>WOAH</p>
+    </grave-yard>
 
     <script>
         const template = document.querySelector( 'template' );
-        const gyard = document.querySelector( '#graveyard' );
-        const gyardRoot = gyard.createShadowRoot();
+        const GraveyardProto = Object.create( HTMLElement.prototype );
 
-        gyardRoot.appendChild( document.importNode( template.content, true) );
+        GraveyardProto.createdCallback = function () {
+            const root = this.createShadowRoot();
+            root.appendChild( document.importNode( template.content, true ) );
+        };
+
+        const Graveyard = document.registerElement( 'grave-yard', { prototype: GraveyardProto } );
+
     </script>
 
 </body>
