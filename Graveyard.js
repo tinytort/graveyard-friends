@@ -1,5 +1,4 @@
 const template = document.querySelector( 'template' );
-const GraveyardProto = Object.create( HTMLElement.prototype );
 
 class Graveyard extends HTMLElement {
     constructor () {
