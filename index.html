@@ -7,30 +7,40 @@
 </head>
 <body>
     <template>
-
+        <style>
+            .tombstone {
+                background-color: gray;
+                width: 150px;
+                height: 300px;
+                padding: 20px;
+    
+                border-top-left-radius: 30px;
+                border-top-right-radius: 30px;
+                border: solid 1px black;
+    
+                color: black;
+                font-weight: bold;
+                letter-spacing: 10px;
+                text-align: center;
+            }
+        </style>
+        <div class="tombstone">
+            <content select="p"></content>
+        </div>
     </template>
 
-    <style>
-        .tombstone {
-            background-color: gray;
-            width: 150px;
-            height: 300px;
-            padding: 20px;
-
-            border-top-left-radius: 30px;
-            border-top-right-radius: 30px;
-            border: solid 1px black;
-
-            color: black;
-            font-weight: bold;
-            letter-spacing: 10px;
-            text-align: center;
-        }
-    </style>
-    <div class="tombstone">
+    <section id="graveyard">
         <p>RIP BOBBY</p>
-        <p>1900-2000</p>
-    </div>
-    
+        <p>HOLY SHIT</p>
+    </section>
+
+    <script>
+        const template = document.querySelector( 'template' );
+        const gyard = document.querySelector( '#graveyard' );
+        const gyardRoot = gyard.createShadowRoot();
+
+        gyardRoot.appendChild( document.importNode( template.content, true) );
+    </script>
+
 </body>
 </html>
