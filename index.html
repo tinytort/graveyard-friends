@@ -4,47 +4,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Graveyard</title>
+   
 </head>
 <body>
     <template>
         <style>
+
+            article {
+                position: relative;
+                display: inline-block;
+
+                bottom: 0;
+            }
+
             .tombstone {
                 background-color: gray;
                 width: 150px;
                 height: 300px;
                 padding: 20px;
-    
+                box-sizing: border-box;
+
                 border-top-left-radius: 30px;
                 border-top-right-radius: 30px;
                 border: solid 1px black;
-    
+
                 color: black;
                 font-weight: bold;
                 letter-spacing: 10px;
                 text-align: center;
+
+                display: inline-block;
+
+                z-index: 2;
+            }
+
+            .ghost {
+                opacity: 0;
+
+                background-color: rgba(255,255,255,.8);
+                width: 140px;
+                height: 200px;
+                padding: 20px;
+                box-sizing: border-box;
+
+                border-top-left-radius: 30px;
+                border-top-right-radius: 30px;
+                border: solid 1px gray;
+
+                font-family: monospace;
+                text-align: right;
+
+                z-index: 1;
+
+                position: relative;
+                bottom: 0;
+                right: -40px;
+                transform: rotate(20deg);
+
+                transition: all 1s;
+            }
+
+            .ghost.haunt {
+                opacity: .8;
+                bottom: 100px;
             }
         </style>
-        <div class="tombstone">
-            <content select="p"></content>
-        </div>
-    </template>
 
+        <article>
+            <div class="ghost">
+                <h1>^  ^</h1>
+                <h1><sup>o</sup></h1>
+            </div>
+            <div class="tombstone">
+                <content select="p"></content>
+            </div>
+        </article>
+    </template>
+    
     <grave-yard>
         <p>RIP BOBBY</p>
         <p>WOAH</p>
+    </grave-yard>
+
+    <grave-yard>
+        <p>RIP JAMES</p>
+        <p>1999 - 2000</p>
     </grave-yard>
 
     <script>
         const template = document.querySelector( 'template' );
         const GraveyardProto = Object.create( HTMLElement.prototype );
 
-        GraveyardProto.createdCallback = function () {
-            const root = this.createShadowRoot();
-            root.appendChild( document.importNode( template.content, true ) );
-        };
+        class Graveyard extends HTMLElement {
+            constructor () {
+                super();
+                
+                this.root = this.createShadowRoot();
+                this.root.appendChild( document.importNode( template.content, true ) );
+                
+                this.addEventListener( 'click', this.toggleGhostFriend );
+            }
 
-        const Graveyard = document.registerElement( 'grave-yard', { prototype: GraveyardProto } );
+            toggleGhostFriend ( e ) {
+                const ghost = this.root.querySelector( '.ghost' );
+                ghost.classList.toggle( 'haunt' );
+            }
+        }
 
+        window.customElements.define( 'grave-yard', Graveyard );
     </script>
 
 </body>
