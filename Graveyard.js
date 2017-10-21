@@ -1,13 +1,14 @@
-const template = document.querySelector( 'template' );
 
 class Graveyard extends HTMLElement {
     constructor () {
         super();
         
-        this.root = this.createShadowRoot();
-        this.root.appendChild( document.importNode( template.content, true ) );
+        const template = document.querySelector( 'template' );
+        this.root = this.attachShadow({ mode: 'open' });
+        this.shadowRoot.appendChild( template.content.cloneNode(true) );
         
         this.addEventListener( 'click', this.toggleGhostFriend );
+
     }
 
     toggleGhostFriend ( e ) {

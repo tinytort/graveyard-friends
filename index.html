@@ -86,24 +86,24 @@
                 <h1><sup>o</sup></h1>
             </div>
             <div class="tombstone">
-                <content select="p"></content>
+                <slot name="text"></slot>
             </div>
         </article>
     </template>
 
     <section>
         <grave-yard>
-            <p>RIP IE</p>
-            <p>1995-2016</p>
+            <p slot="text">RIP IE</p>
+            <p slot="text">1995-2016</p>
         </grave-yard>
         
         <grave-yard>
-            <p>boy bye</p>
-            <p>#nope</p>
+            <p slot="text">boy bye</p>
+            <p slot="text">#nope</p>
         </grave-yard>
 
         <grave-yard>
-            <p>"wow it's dark down here"</p>
+            <p slot="text">"wow it's dark down here"</p>
         </grave-yard>
     </section>
 
