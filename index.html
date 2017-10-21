@@ -75,14 +75,14 @@
             }
 
             .ghost.haunt {
-                opacity: .8;
+                opacity: .7;
                 bottom: 100px;
             }
         </style>
 
         <article>
             <div class="ghost">
-                <h1>^  ^</h1>
+                <slot name="eyes"><h1>^  ^</h1></slot>
                 <h1><sup>o</sup></h1>
             </div>
             <div class="tombstone">
@@ -92,17 +92,19 @@
     </template>
 
     <section>
-        <grave-yard>
+        <grave-yard color="#ff3399">
             <p slot="text">RIP IE</p>
             <p slot="text">1995-2016</p>
         </grave-yard>
         
         <grave-yard>
+            <h1 slot="eyes">O  O</h1>
             <p slot="text">boy bye</p>
             <p slot="text">#nope</p>
         </grave-yard>
-
+        
         <grave-yard>
+            <h1 slot="eyes">o  -</h1>
             <p slot="text">"wow it's dark down here"</p>
         </grave-yard>
     </section>
