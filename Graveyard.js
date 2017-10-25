@@ -26,5 +26,5 @@ class Graveyard extends HTMLElement {
     }
 }
 
-// define our custom element with our window
+// Step 3. define our custom element with our window
 window.customElements.define( 'grave-yard', Graveyard );
