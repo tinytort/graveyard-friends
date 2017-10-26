@@ -82,7 +82,7 @@
 
         <article>
             <div class="ghost">
-                <h1>^  ^</h1>
+                <slot name="eyes">^  ^</slot>
                 <h1><sup>o</sup></h1>
             </div>
             <div class="tombstone">
@@ -92,6 +92,12 @@
     </template>
 
     <section>
+        <grave-yard>
+            <p slot="eyes"># #</p>
+            <p slot ="text">RIP My Dreams</p>
+            <p slot ="text">1992-2017</p>
+            
+        </grave-yard>
         <!-- Step 4. Use your custom component -->
         <grave-yard>
             <p slot="text">RIP IE</p>
